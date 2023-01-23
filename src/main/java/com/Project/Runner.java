@@ -49,20 +49,24 @@ public class Runner {
         Session session = sf.openSession();
         Transaction tx = session.beginTransaction();
 
-        session.save(instructor1);
-        session.save(instructor2);
-        session.save(instructorDetail1);
-        session.save(instructorDetail2);
-        session.save(course1);
-        session.save(course2);
-        session.save(course3);
-        session.save(course4);
-        session.save(student1);
-        session.save(student2);
-        session.save(review1);
-        session.save(review2);
-        session.save(review3);
-        session.save(review4);
+//        session.save(instructor1);
+//        session.save(instructor2);
+//        session.save(instructorDetail1);
+//        session.save(instructorDetail2);
+//        session.save(course1);
+//        session.save(course2);
+//        session.save(course3);
+//        session.save(course4);
+//        session.save(student1);
+//        session.save(student2);
+//        session.save(review1);
+//        session.save(review2);
+//        session.save(review3);
+//        session.save(review4);
+
+        Instructor ins1 = session.get(Instructor.class, 1);
+        System.out.println(ins1);
+
 
 
         tx.commit();
