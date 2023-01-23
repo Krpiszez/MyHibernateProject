@@ -5,6 +5,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.Arrays;
 import java.util.List;
 
@@ -67,7 +71,14 @@ public class Runner {
         Instructor ins1 = session.get(Instructor.class, 1);
         System.out.println(ins1);
 
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Instructor> criteriaQuery = criteriaBuilder.createQuery(Instructor.class);
+        Root<Instructor> root = criteriaQuery.from(Instructor.class);
 
+        criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("fName"), "Tom"));
+        Query query = session.createQuery(criteriaQuery);
+        List<Instructor> tom = query.getResultList();
+        System.out.println(tom);
 
         tx.commit();
         session.close();
